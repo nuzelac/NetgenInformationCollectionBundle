@@ -32,12 +32,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Netgen\\Bundle\\InformationCollectionBundle\\": "bundle"
+            "Netgen\\Bundle\\InformationCollectionBundle\\": "bundle",
+            "Netgen\\Bundle\\InformationCollectionPlatformUIBundle\\": "bundle-ui"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Netgen\\Bundle\\InformationCollectionBundle\\Tests\\": "tests"
+            "Netgen\\Bundle\\InformationCollectionBundle\\Tests\\": "tests",
+            "Netgen\\Bundle\\InformationCollectionPlatformUIBundle\\Tests\\": "tests-ui"
         }
     },
     "scripts": {
