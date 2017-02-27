@@ -107,7 +107,7 @@ class ContentTypeController extends BaseContentTypeController
             $fieldDefinitionsByGroup[$fieldDefinition->fieldGroup ?: 'content'][] = $fieldDefinition;
         }
 
-        return $this->render('EzSystemsExtendingPlatformUIConferenceBundle:ContentType:view.html.twig', [
+        return $this->render('NetgenInformationCollectionPlatformUIBundle:ContentType:view.html.twig', [
             'language_code' => $languageCode,
             'content_type' => $contentType,
             'content_count' => $contentCount,
@@ -166,7 +166,7 @@ class ContentTypeController extends BaseContentTypeController
             $hasErrors = true;
         }
 
-        return $this->render('@EzSystemsExtendingPlatformUIConference/ContentType/update.html.twig', [
+        return $this->render('@NetgenInformationCollectionPlatformUIBundle/ContentType/update.html.twig', [
             'form' => $form->createView(),
             'action_url' => $actionUrl,
             'contentTypeName' => $contentTypeDraft->getName($languageCode),
