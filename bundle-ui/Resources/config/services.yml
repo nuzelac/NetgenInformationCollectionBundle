@@ -1,1 +1,36 @@
+parameters:
+
+#    ezrepoforms.content_type.update.form_type.class: EzSystems\RepositoryForms\Form\Type\ContentType\ContentTypeUpdateType
+#    ezrepoforms.field_definition.form_type.class: EzSystems\RepositoryForms\Form\Type\FieldDefinition\FieldDefinitionType
+
 services:
+#    ez_systems_extending_platform_ui_conference.example:
+#        class: EzSystems\ExtendingPlatformUIConferenceBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    netgen.platformui.controller.content_type:
+        class: EzSystems\ExtendingPlatformUIConferenceBundle\Controller\ContentTypeController
+        parent: ezsystems.platformui.controller.base
+        arguments:
+            - "@ezpublish.api.service.content_type"
+            - "@ezpublish.api.service.search"
+            - "@ezpublish.api.service.user"
+            - "@ezrepoforms.action_dispatcher.content_type.group"
+            - "@ezrepoforms.action_dispatcher.content_type"
+            - "@ezrepoforms.field_type_form_mapper.registry"
+        calls:
+            - [setPrioritizedLanguages, ["$languages$"]]
+
+    ezrepoforms.content_type.update.form_type:
+        class: EzSystems\ExtendingPlatformUIConferenceBundle\Form\Type\ContentType\ContentTypeUpdateType
+        arguments: ["@ezpublish.field_type_collection.factory", "@translator"]
+        tags:
+            - {name: form.type, alias: ezrepoforms_contenttype_update}
+
+    ezrepoforms.field_definition.form_type:
+        class: EzSystems\ExtendingPlatformUIConferenceBundle\Form\Type\FieldDefinition\FieldDefinitionType
+        arguments: ["@ezrepoforms.field_type_form_mapper.dispatcher", "@ezpublish.api.service.field_type"]
+        calls:
+            - [setGroupsList, ["@ezpublish.fields_groups.list"]]
+        tags:
+            - { name: form.type, alias: ezrepoforms_fielddefinition_update }
