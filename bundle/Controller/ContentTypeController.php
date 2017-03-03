@@ -1,28 +1,21 @@
 <?php
 
-namespace Netgen\Bundle\InformationCollectionPlatformUIBundle\Controller;
+namespace Netgen\Bundle\InformationCollectionBundle\Controller;
 
 use EzSystems\PlatformUIBundle\Controller\ContentTypeController as BaseContentTypeController;
 use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\API\Repository\Values\Content\Query;
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
 use EzSystems\RepositoryForms\Data\Mapper\ContentTypeDraftMapper;
-use EzSystems\RepositoryForms\Data\Mapper\ContentTypeGroupMapper;
 use EzSystems\RepositoryForms\FieldType\FieldTypeFormMapperRegistryInterface;
 use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
-use EzSystems\RepositoryForms\Form\Type\ContentType\ContentTypeCreateType;
 use EzSystems\RepositoryForms\Form\Type\ContentType\ContentTypeDeleteType;
-use EzSystems\RepositoryForms\Form\Type\ContentType\ContentTypeGroupDeleteType;
-use EzSystems\RepositoryForms\Form\Type\ContentType\ContentTypeGroupType;
 use Symfony\Component\HttpFoundation\Request;
-use Netgen\Bundle\InformationCollectionPlatformUIBundle\Form\Type\ContentType\ContentTypeUpdateType;
+use Netgen\Bundle\InformationCollectionBundle\Form\Type\ContentType\ContentTypeUpdateType;
 
 class ContentTypeController extends BaseContentTypeController
 {
@@ -107,7 +100,7 @@ class ContentTypeController extends BaseContentTypeController
             $fieldDefinitionsByGroup[$fieldDefinition->fieldGroup ?: 'content'][] = $fieldDefinition;
         }
 
-        return $this->render('NetgenInformationCollectionPlatformUIBundle:ContentType:view.html.twig', [
+        return $this->render('NetgenInformationCollectionBundle:ContentType:view.html.twig', [
             'language_code' => $languageCode,
             'content_type' => $contentType,
             'content_count' => $contentCount,
@@ -166,7 +159,7 @@ class ContentTypeController extends BaseContentTypeController
             $hasErrors = true;
         }
 
-        return $this->render('@NetgenInformationCollectionPlatformUIBundle/ContentType/update.html.twig', [
+        return $this->render('NetgenInformationCollectionBundle:ContentType:update.html.twig', [
             'form' => $form->createView(),
             'action_url' => $actionUrl,
             'contentTypeName' => $contentTypeDraft->getName($languageCode),

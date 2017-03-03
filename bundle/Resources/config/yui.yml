@@ -1,0 +1,18 @@
+system:
+    default:
+        yui:
+            modules:
+#                ezconf-listapplugin:
+#                    dependencyOf: ['ez-platformuiapp']
+#                    requires: ['ez-pluginregistry', 'plugin', 'base', 'ezconf-listview']
+#                    path: %netgen_information_collection.public_dir%/js/apps/plugins/netgen-icplugin.js
+#                ezconf-listview:
+#                    requires: ['ez-templatebasedview', 'ezconflistview-ez-template']
+#                    path: %netgen_information_collection.public_dir%/js/views/netgen-listview.js
+#                ezconflistview-ez-template:
+#                    type: 'template'
+#                    path: %netgen_information_collection.public_dir%/templates/netgenlistview.hbt
+#                netgen-icnavigationplugin:
+#                    requires: ['ez-pluginregistry', 'ez-viewservicebaseplugin']
+#                    dependencyOf: ['ez-navigationhubviewservice', 'ez-navigationitemview']
+#                    path: %netgen_information_collection.public_dir%/js/views/services/plugins/netgen-icnavigationplugin.js

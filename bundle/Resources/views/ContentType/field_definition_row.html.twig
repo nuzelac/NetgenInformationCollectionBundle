@@ -1,7 +1,6 @@
 {# @var value \EzSystems\RepositoryForms\Data\FieldDefinitionData #}
 {% block form_row %}
     <div class="field-definition-edit field-type-{{ value.fieldTypeIdentifier }}">
-        {{ dump(value.isInfoCollector) }}
         <h3>
             {{ form_widget(form.selected) }}
             {{ value.names[languageCode] }} [{{ value.fieldTypeIdentifier }}] (id: {{ value.fieldDefinition.id }})

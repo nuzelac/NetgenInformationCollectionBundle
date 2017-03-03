@@ -7,13 +7,16 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\Config\Resource\FileResource;
 
 /**
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class NetgenInformationCollectionExtension extends Extension
+class NetgenInformationCollectionExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -47,5 +50,53 @@ class NetgenInformationCollectionExtension extends Extension
                 }
             }
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $container->prependExtensionConfig(
+            'assetic',
+            [
+                'bundles' => [
+                    'NetgenInformationCollectionBundle'
+                ],
+            ]
+        );
+
+        $this->prependYui($container);
+        $this->prependCss($container);
+    }
+
+    private function prependYui(ContainerBuilder $container)
+    {
+        $container->setParameter(
+            ConfigurationConstants::SETTINGS_ROOT . '.public_dir',
+            'bundles/netgeninformationcollectionbundle'
+        );
+
+        $yuiConfigFile = __DIR__ . '/../Resources/config/yui.yml';
+        $config = Yaml::parse(file_get_contents($yuiConfigFile));
+        $container->prependExtensionConfig('ez_platformui', $config);
+        $container->addResource(
+            new FileResource($yuiConfigFile)
+        );
+    }
+
+    private function prependCss(ContainerBuilder $container)
+    {
+        $container->setParameter(
+            ConfigurationConstants::SETTINGS_ROOT . '.css_dir',
+            'bundles/netgeninformationcollectionbundle/css'
+        );
+
+        $cssConfigFile = __DIR__ . '/../Resources/config/css.yml';
+        $config = Yaml::parse(file_get_contents($cssConfigFile));
+        $container->prependExtensionConfig('ez_platformui', $config);
+        $container->addResource(
+            new FileResource($cssConfigFile)
+        );
     }
 }
