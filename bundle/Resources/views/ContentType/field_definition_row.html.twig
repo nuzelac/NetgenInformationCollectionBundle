@@ -1,4 +1,6 @@
 {# @var value \EzSystems\RepositoryForms\Data\FieldDefinitionData #}
+{% extends "EzSystemsRepositoryFormsBundle:ContentType:field_definition_row.html.twig" %}
+
 {% block form_row %}
     <div class="field-definition-edit field-type-{{ value.fieldTypeIdentifier }}">
         <h3>
@@ -75,14 +77,4 @@
             {% endif %}
         {% endfor %}
     </div>
-{% endblock %}
-
-{% block datetimeinterval_widget %}
-    {% for child in form %}
-        <div>
-            {{- form_label(child) -}}
-            {{- form_errors(child) -}}
-            {{- form_widget(child) -}}
-        </div>
-    {% endfor %}
 {% endblock %}

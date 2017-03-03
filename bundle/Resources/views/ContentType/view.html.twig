@@ -1,25 +1,6 @@
 {# @var content_type \eZ\Publish\API\Repository\Values\ContentType\ContentType #}
 
-{% extends "eZPlatformUIBundle::pjax_admin.html.twig" %}
-
-{% trans_default_domain "content_type" %}
-
-{% set content_type_group = content_type.contentTypeGroups|first %}
-{% set content_type_name = content_type.names[language_code]|default('') %}
-
-{% block header_breadcrumbs %}
-    {% set breadcrumb_items = [
-    {link: path('admin_dashboard'), label: 'dashboard.title'|trans({}, 'dashboard')|desc("Dashboard")},
-    {link: path('admin_contenttype'), label: 'content_type.dashboard_title'|trans|desc("Content types")},
-    {link: path('admin_contenttypeGroupView', {'contentTypeGroupId': content_type_group.id}), label: content_type_group.identifier},
-    {link: null, label: content_type_name}
-    ] %}
-    {{ parent() }}
-{% endblock %}
-
-{% block header_title %}
-    <h1 class="ez-page-header-name ez-contenttype-icon ez-contenttype-icon-{{ content_type.identifier }}">{{ content_type_name }}</h1>
-{% endblock %}
+{% extends "@eZPlatformUI/ContentType/view_content_type.html.twig" %}
 
 {% block content %}
     <section class="ez-serverside-content">
@@ -174,5 +155,3 @@
         </section>
     </section>
 {% endblock %}
-
-{% block title %}{{ content_type_name }}{% endblock %}
