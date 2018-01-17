@@ -24,6 +24,7 @@ env:
 matrix:
     # mark as finished before allow_failures are run
     fast_finish: trues
+    # nightly can fail
     allow_failures:
         - php: nightly
 
@@ -54,7 +55,7 @@ git:
   depth: 30
 
 # enable scrutinizer
-#after_script:
+# after_script:
 #  - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
 # send coverage to codecov.io
