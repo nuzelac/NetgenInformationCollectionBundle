@@ -9,7 +9,7 @@ Master: [![Build Status](https://travis-ci.org/netgen/NetgenInformationCollectio
 
 [![Code Coverage](https://img.shields.io/codecov/c/github/netgen/NetgenInformationCollectionBundle.svg?style=flat-square)](https://codecov.io/gh/netgen/NetgenInformationCollectionBundle)
 [![Quality Score](https://img.shields.io/scrutinizer/g/netgen/NetgenInformationCollectionBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/netgen/NetgenInformationCollectionBundle)
-[![Code Climate](https://img.shields.io/codeclimate/github/netgen/NetgenInformationCollectionBundle.svg?style=flat-square)](https://codeclimate.com/github/netgen/NetgenInformationCollectionBundle)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/netgen/NetgenInformationCollectionBundle/maintainability)
 [![Downloads](https://img.shields.io/packagist/dt/netgen/information-collection-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/information-collection-bundle/stats)
 [![Latest stable](https://img.shields.io/packagist/v/netgen/information-collection-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/information-collection-bundle)
 [![License](https://img.shields.io/packagist/l/netgen/information-collection-bundle.svg?style=flat-square)](LICENSE)
