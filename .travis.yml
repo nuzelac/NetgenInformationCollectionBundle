@@ -23,11 +23,7 @@ php:
 env:
 matrix:
     # mark as finished before allow_failures are run
-    fast_finish: true
-    include:
-        - php: 7.0
-        - php: 7.1
-        - php: 7.2
+    fast_finish: trues
     allow_failures:
         - php: nightly
 
