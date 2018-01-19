@@ -24,7 +24,6 @@ matrix:
     fast_finish: true
     include:
         - php: 7.0
-          env: CONFIG=""
         - php: 7.1
           env: CONFIG=""
         - php: 7.2
@@ -50,7 +49,7 @@ before_install:
 
 # install dependencies
 install:
-    - composer install $CONFIG
+    - composer install if [ -n "$CONFIG" ]; then echo $CONFIG
 
 # execute phpunit as the script command
 script:
