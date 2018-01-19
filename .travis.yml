@@ -20,10 +20,14 @@ php:
     - 7.2
     - nightly
 
+# set test reporter token for CodeClimate
 env:
+    global:
+        - CC_TEST_REPORTER_ID=37b4241dc1b4e5dabfaa9849c963f59e376806a257f3c47b94d9228731341dee
+          
 matrix:
     # mark as finished before allow_failures are run
-    fast_finish: trues
+    fast_finish: true
     # nightly can fail
     allow_failures:
         - php: nightly
@@ -37,6 +41,9 @@ branches:
 # make sure to update composer to latest available version
 before_install:
     - phpenv config-add travis.php.ini
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
+    - chmod +x cc-test-reporter
+    - cc-test-reporter before-build
 
 # install dependencies
 install:
@@ -44,7 +51,7 @@ install:
 
 # execute phpunit as the script command
 script:
-  - ./vendor/bin/phpunit -d memory_limit=-1 --colors -c phpunit.xml.dist --coverage-clover=coverage.xml
+  - ./vendor/bin/phpunit -d memory_limit=-1 --colors -c phpunit.xml.dist --coverage-clover=clover.xml
 
 # disable mail notifications
 notification:
@@ -54,10 +61,11 @@ notification:
 git:
   depth: 30
 
-# enable scrutinizer
-# after_script:
-#  - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-
 # send coverage to codecov.io
 after_success:
+    # send coverage to codecov.io
     - bash <(curl -s https://codecov.io/bash)
+    # send coverage to CodeClimate
+    - cc-test-reporter after-build --coverage-input-type "clover" --exit-code $TRAVIS_TEST_RESULT
+    # sent test coverage to scrutinizer
+    #- wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
