@@ -18,19 +18,19 @@ cache:
 env:
     global:
         - CC_TEST_REPORTER_ID=37b4241dc1b4e5dabfaa9849c963f59e376806a257f3c47b94d9228731341dee
-    matrix:
-        - CONFIG=""
-        - CONFIG="--ignore-platform-reqs"
-
-php:
-    - 7.0
-    - 7.1
-    - 7.2
-    - nightly
 
 matrix:
     # mark as finished before allow_failures are run
     fast_finish: true
+    include:
+        - php: 7.0
+          env: CONFIG=""
+        - php: 7.1
+          env: CONFIG=""
+        - php: 7.2
+          env: CONFIG=""
+        - php: nightly
+          env: CONFIG="--ignore-platform-reqs"
     # nightly can fail
     allow_failures:
         - php: nightly
