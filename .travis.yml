@@ -41,9 +41,9 @@ branches:
 # make sure to update composer to latest available version
 before_install:
     - phpenv config-add travis.php.ini
-    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
-    - chmod +x cc-test-reporter
-    - cc-test-reporter before-build
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - ./cc-test-reporter before-build
 
 # install dependencies
 install:
@@ -66,6 +66,6 @@ after_success:
     # send coverage to codecov.io
     - bash <(curl -s https://codecov.io/bash)
     # send coverage to CodeClimate
-    - cc-test-reporter after-build --coverage-input-type "clover" --exit-code $TRAVIS_TEST_RESULT
+    - ./cc-test-reporter after-build --coverage-input-type "clover" --exit-code $TRAVIS_TEST_RESULT
     # sent test coverage to scrutinizer
     #- wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
