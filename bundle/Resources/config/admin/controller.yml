@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+#        public: false
+
+    Netgen\Bundle\InformationCollectionBundle\Admin\Controller\:
+        public: true
+        autowire: true
+        autoconfigure: true
+        resource: '../../../bundle/Admin/Controller'
+        tags: [ 'controller.service_arguments' ]
+
+    Netgen\Bundle\InformationCollectionBundle\Admin\Controller\ContentTypeController:
+        autowire: true
+        autoconfigure: false
+        public: false
+        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+        arguments:
+            $contentTypeActionDispatcher: '@ezrepoforms.action_dispatcher.content_type'
+            $languages: '$languages$'
+            $defaultPaginationLimit: '$pagination.content_type_limit$'
+        tags: [ 'controller.service_arguments' ]

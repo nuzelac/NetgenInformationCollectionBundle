@@ -1,0 +1,20 @@
+netgen_information_collection.admin.list:
+    path: /admin/information-collection/list
+    defaults:
+        _controller: 'Netgen\Bundle\InformationCollectionBundle\Admin\Controller\AdminController:listAction'
+
+ezplatform.content_type.view:
+    path: /contenttypegroup/{contentTypeGroupId}/contenttype/{contentTypeId}
+    methods: ['GET']
+    defaults:
+        _controller: 'Netgen\Bundle\InformationCollectionBundle\Admin\Controller\ContentTypeController:viewAction'
+    requirements:
+        contentTypeGroupId: \d+
+
+ezplatform.content_type.update:
+    path: /contenttypegroup/{contentTypeGroupId}/contenttype/{contentTypeId}/update
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: 'Netgen\Bundle\InformationCollectionBundle\Admin\Controller\ContentTypeController:updateAction'
+    requirements:
+        contentTypeGroupId: \d+

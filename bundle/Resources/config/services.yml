@@ -4,6 +4,9 @@ imports:
     - { resource: factories.yml }
     - { resource: form.yml }
 
+    - { resource: admin/menu.yml }
+    - { resource: admin/controller.yml }
+
 services:
     netgen_information_collection.controller:
         class: Netgen\Bundle\InformationCollectionBundle\Controller\InformationCollectionController
@@ -42,19 +45,19 @@ services:
         arguments:
             - '@mailer'
 
-    netgen_information_collection.controller.content_type:
-        class: Netgen\Bundle\InformationCollectionBundle\Controller\ContentTypeController
-        parent: ezsystems.platformui.controller.content_type
-        public: true
-
-    netgen.field_definition.form_type_extension:
-        class: Netgen\Bundle\InformationCollectionBundle\Form\Extension\FieldDefinitionTypeExtension
-        # public: false
-        tags:
-            - { name: form.type_extension, extended_type: EzSystems\RepositoryForms\Form\Type\FieldDefinition\FieldDefinitionType }
-
-    netgen.content_type.update.form_type_extension:
-        class: Netgen\Bundle\InformationCollectionBundle\Form\Extension\ContentTypeUpdateTypeExtension
-        # public: false
-        tags:
-            - { name: form.type_extension, extended_type: EzSystems\RepositoryForms\Form\Type\ContentType\ContentTypeUpdateType }
+#    netgen_information_collection.controller.content_type:
+#        class: Netgen\Bundle\InformationCollectionBundle\Controller\ContentTypeController
+#        parent: ezsystems.platformui.controller.content_type
+#        public: true
+#
+#    netgen.field_definition.form_type_extension:
+#        class: Netgen\Bundle\InformationCollectionBundle\Form\Extension\FieldDefinitionTypeExtension
+#        # public: false
+#        tags:
+#            - { name: form.type_extension, extended_type: EzSystems\RepositoryForms\Form\Type\FieldDefinition\FieldDefinitionType }
+#
+#    netgen.content_type.update.form_type_extension:
+#        class: Netgen\Bundle\InformationCollectionBundle\Form\Extension\ContentTypeUpdateTypeExtension
+#        # public: false
+#        tags:
+#            - { name: form.type_extension, extended_type: EzSystems\RepositoryForms\Form\Type\ContentType\ContentTypeUpdateType }

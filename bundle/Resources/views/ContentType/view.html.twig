@@ -134,7 +134,7 @@
 
             <div class="ez-toolbar">
                 {% if can_edit %}
-                    <a href="{{ path('admin_contenttypeUpdate', {'contentTypeId': content_type.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'content_type.edit'|trans|desc("Edit") }}</a>
+                    <a href="{{ path('admin_contenttypeUpdate', {'contentTypeId': content_type.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'content_type.edit.html.twig'|trans|desc("Edit") }}</a>
                 {% else %}
                     <span class="pure-button ez-button pure-button-disabled" data-icon="&#xe606;">{{ 'content_type.edit_title'|trans|desc("Edit") }}</span>
                 {% endif %}
